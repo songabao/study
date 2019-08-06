@@ -1,0 +1,46 @@
+
+server:
+  port: 8980
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8910/eureka/,http://${eureka.instance.hostname}:8909/eureka/
+spring:
+  application:
+    name: microservice-gateway-zuul
+##Actuator配置
+management:
+  endpoints:
+    web:
+      exposure:
+      #加入什么端口，如：默认 health info
+        include: "*"
+        #去除info端口
+        exclude: info
+        #配置actuator的访问，默认 /actuator
+      base-path: /
+      #设置监听所有
+  endpoint:
+    health:
+      show-details: always
+zuul:
+  routes:
+  #  microservice-config-server-production-ribbon: /city/**
+    city-route:
+      service-id: microservice-config-server-production-ribbon
+      path: /city/**
+  ignored-services: '*'
+  prefix: /api
+#  strip-prefix: false
+rabbon:
+  eureka:
+    enable: false
+logging:
+  level:
+    netflix.com: debug
+#microservice-config-server-production-ribbon:
+#  ribbon:
+#    listOfServices: localhost:8915,localhost:8916
+
