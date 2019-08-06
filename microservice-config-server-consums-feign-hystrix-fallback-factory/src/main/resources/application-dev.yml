@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: microservice-config-server-consums-feign-hystrix-fallback-factory
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/songabao?&useSSL=false&useUnicode=true&serverTimezone=GMT%2B8&characterEncoding=UTF-8
+    username: root
+    password: root
+server:
+  port: 8960
+mybatis:
+  mapper-locations: classpath*:/mybatis/mappers/*.xml
+  type-aliases-package: com.microservice.domain
+  config-location: classpath:mybatis/mybatis-config.xml
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8910/eureka/,http://${eureka.instance.hostname}:8909/eureka/
+
+#logging:
+#  level:
+#    com.microservice.feign: debug
+##Actuator配置
+management:
+  endpoints:
+    web:
+      exposure:
+      #加入什么端口，如：默认 health info
+        include: "*"
+        #去除info端口
+        exclude: info
+        #配置actuator的访问，默认 /actuator
+      base-path: /
+      #设置监听所有
+  endpoint:
+    health:
+      show-details: always
+feign:
+  hystrix:
+    enabled: true
+
