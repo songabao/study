@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: microservice-config-server-eurka
+server:
+  port: 8909
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8910/eureka/
+    fetchRegistry: true
+    registerWithEureka: false
+  #宁可保留所有微服务（健康和不健康微服务）也不能盲目注销掉不健康微服务
+  server:
+    enable-self-preservation: false
