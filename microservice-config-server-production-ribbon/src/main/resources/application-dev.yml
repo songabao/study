@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: microservice-config-server-production-ribbon
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/songabao?&useSSL=false&useUnicode=true&serverTimezone=GMT%2B8&characterEncoding=UTF-8
+    username: root
+    password: root
+server:
+  port: 8914
+mybatis:
+  mapper-locations: classpath*:/mybatis/mappers/*.xml
+  type-aliases-package: com.microservice.domain
+  config-location: classpath:mybatis/mybatis-config.xml
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8910/eureka/,http://${eureka.instance.hostname}:8909/eureka/
+
