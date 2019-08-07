@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: microservice-springcloud-config-pero
+  cloud:
+    config:
+      uri: http://localhost:8990
+      profile: dev
+      name: config-server
+      profiles: dev_2.0
+      label: spring_study
+server:
+  port: 8991
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8910/eureka/,http://${eureka.instance.hostname}:8909/eureka/

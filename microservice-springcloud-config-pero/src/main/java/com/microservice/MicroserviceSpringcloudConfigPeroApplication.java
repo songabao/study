@@ -16,11 +16,6 @@ import java.util.Properties;
 @SpringBootApplication
 @EnableEurekaClient
 public class MicroserviceSpringcloudConfigPeroApplication {
-	@Bean
-	@LoadBalanced
-	public RestTemplate restTemplates(){
-		return  new RestTemplate();
-	}
 	public static void main(String[] args) {
 		SpringApplication.run(MicroserviceSpringcloudConfigPeroApplication.class, args);
 	}
