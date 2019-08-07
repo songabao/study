@@ -1,4 +1,21 @@
-
 spring:
-  profiles:
-    active: dev
+  application:
+    name: microservice-springcloud-config-server
+  cloud:
+    config:
+      server:
+        git:
+          name: config-server
+          uri: https://github.com/songabao/study.git
+          username: songabao
+          password: song9703013.
+          profiles: dev-1.0
+          default-label: spring_study
+server:
+  port: 8990
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8910/eureka/,http://${eureka.instance.hostname}:8909/eureka/
