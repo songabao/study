@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: microservice-springcloud-config-pero-refresh
+  profiles:
+    active: dev
+  cloud:
+    config:
+      uri: http://localhost:8990
+      label: master
+      discovery:
+        service-id: application
+      profile: dev
+server:
+  port: 8992
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8910/eureka/,http://${eureka.instance.hostname}:8909/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh,health
